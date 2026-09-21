@@ -3,13 +3,13 @@
 # Publish staged Suite artifacts to GitHub Releases (canonical public download host).
 #
 # Required env for publish:
-#   SUITE_PUBLISH=1
-#   GITHUB_TOKEN or GITHUB_MIRROR_TOKEN - write access to TunedChaos/chaosnexus-suite
+#  SUITE_PUBLISH=1
+#  GITHUB_TOKEN or GITHUB_MIRROR_TOKEN - write access to TunedChaos/chaosnexus-suite
 # Optional:
-#   SUITE_TAG       - default suite-v<suite_version from manifest>
-#   ARTIFACTS_DIR   - default <workspace>/artifacts/suite
-#   GITHUB_OWNER    - default TunedChaos
-#   SUITE_REPO      - default chaosnexus-suite
+#  SUITE_TAG  - default suite-v<suite_version from manifest>
+#  ARTIFACTS_DIR  - default <workspace>/artifacts/suite
+#  GITHUB_OWNER  - default TunedChaos
+#  SUITE_REPO  - default chaosnexus-suite
 #
 # Leave SUITE_PUBLISH unset to skip; CI still uploads Actions artifacts.
 set -euo pipefail
@@ -25,7 +25,7 @@ REPO="${SUITE_REPO:-chaosnexus-suite}"
 GITHUB_TOKEN="${GITHUB_MIRROR_TOKEN:-${GITHUB_TOKEN:-}}"
 
 if [[ "${SUITE_PUBLISH:-0}" != "1" ]]; then
-  echo "SUITE_PUBLISH!=1 — skipping public Release publish (artifacts remain local/CI)."
+  echo "SUITE_PUBLISH!=1 - skipping public Release publish (artifacts remain local/CI)."
   ls -la "${ARTIFACTS_DIR}" || true
   exit 0
 fi
@@ -64,7 +64,7 @@ gh_rel="$(curl -fsSL "${gh_hdr[@]}" -X POST \
   -d "${gh_body}" 2>/dev/null || true)"
 if [[ -z "${gh_rel}" ]]; then
   gh_rel="$(curl -fsSL "${gh_hdr[@]}" \
-    "${gh_api}/repos/${OWNER}/${REPO}/releases/tags/${TAG}")"
+  "${gh_api}/repos/${OWNER}/${REPO}/releases/tags/${TAG}")"
 fi
 
 upload="$(echo "${gh_rel}" | jq -r '.upload_url' | sed 's/{?name,label}//')"
@@ -81,11 +81,11 @@ for f in "${assets[@]}"; do
   # Replace existing asset with the same name if present
   existing_id="$(echo "${gh_rel}" | jq -r --arg n "${name}" '.assets[]? | select(.name==$n) | .id' | head -1)"
   if [[ -n "${existing_id}" && "${existing_id}" != "null" ]]; then
-    curl -fsSL "${gh_hdr[@]}" -X DELETE \
-      "${gh_api}/repos/${OWNER}/${REPO}/releases/assets/${existing_id}" >/dev/null || true
+  curl -fsSL "${gh_hdr[@]}" -X DELETE \
+  "${gh_api}/repos/${OWNER}/${REPO}/releases/assets/${existing_id}" >/dev/null || true
   fi
   curl -fsSL "${gh_hdr[@]}" -H "Content-Type: application/octet-stream" \
-    --data-binary @"${f}" \
-    "${upload}?name=${name}" >/dev/null
+  --data-binary @"${f}" \
+  "${upload}?name=${name}" >/dev/null
 done
 echo "GitHub Release ${TAG} updated: https://github.com/${OWNER}/${REPO}/releases/tag/${TAG}"
