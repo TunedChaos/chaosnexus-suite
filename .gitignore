@@ -1,0 +1,8 @@
+# chaosnexus-suite/.gitignore
+/payload/
+/staging/
+/dist/
+*.AppImage
+*.dmg
+*.zip
+*.sha256
