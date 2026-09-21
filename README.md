@@ -22,7 +22,7 @@ Canonical installers are attached to **GitHub Releases** on this repository (tag
 | Windows | `ChaosNexus_Suite-<ver>-windows-x86_64.zip` |
 | macOS | `ChaosNexus_Suite-<ver>-macos-universal.dmg` |
 
-Models (GGUF) are **not** baked in — download on first Models use (Hugging Face / Tuned).
+Models (GGUF) are **not** baked in - download on first Models use (Hugging Face / Tuned).
 
 Website: [chaosnexus.ai](https://chaosnexus.ai)
 
@@ -58,7 +58,7 @@ Recipes live in this prefix’s [`Justfile`](Justfile) and are wrapped from the 
 ```
 bin/
   chaosnexus-forge[.exe]
-  chaosnexus-anvil[.exe]    # supervised engine sidecar
+  chaosnexus-anvil[.exe]  # supervised engine sidecar
   chaosnexus-codex[.exe]
   chaosnexus-crucible[.exe]
 share/chaosnexus/
@@ -79,9 +79,9 @@ Some code in this project was generated with assistance from AI. See [AI_ASSISTA
 
 ## Support
 
-ChaosNexus is maintained by a solo developer. If it helps you, consider sponsoring — it funds continued OSS work, not a support SLA:
+ChaosNexus is maintained by a solo developer. If it helps you, consider sponsoring - it funds continued OSS work, not a support SLA:
 
-**[GitHub Sponsors — TunedChaos](https://github.com/sponsors/TunedChaos)**
+**[GitHub Sponsors - TunedChaos](https://github.com/sponsors/TunedChaos)**
 
 File bugs on [chaosnexus-suite Issues](https://github.com/TunedChaos/chaosnexus-suite/issues) (pick a Component).
 
