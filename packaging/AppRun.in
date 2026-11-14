@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# chaosnexus-suite/packaging/AppRun.in
+# Template substituted at pack time. APPDIR is set by the AppImage runtime.
+set -euo pipefail
+
+HERE="$(dirname "$(readlink -f "${0}")")"
+export APPDIR="${APPDIR:-${HERE}}"
+
+# Suite helpers live under usr/ relative to APPDIR.
+export PATH="${APPDIR}/usr/bin:${PATH}"
+export CHAOSNEXUS_SUITE_ROOT="${APPDIR}/usr/share/chaosnexus"
+export CHAOSNEXUS_SCRIPTS_DIR="${CHAOSNEXUS_SCRIPTS_DIR:-${CHAOSNEXUS_SUITE_ROOT}/scripts}"
+export CHAOSNEXUS_CRUCIBLE_BIN="${CHAOSNEXUS_CRUCIBLE_BIN:-${APPDIR}/usr/bin/chaosnexus-crucible}"
+export CHAOSNEXUS_CODEX_BIN="${CHAOSNEXUS_CODEX_BIN:-${APPDIR}/usr/bin/chaosnexus-codex}"
+export CHAOSWRENCH_BIN="${CHAOSWRENCH_BIN:-${APPDIR}/usr/bin/chaosnexus-anvil}"
+
+exec "${APPDIR}/usr/bin/chaosnexus-forge" "$@"

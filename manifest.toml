@@ -1,0 +1,26 @@
+# chaosnexus-suite/manifest.toml
+# Component version pins recorded into Suite share/chaosnexus/VERSION at pack time.
+# Values are overridden from live Cargo.toml / tauri.conf.json when staging.
+
+suite_version = "0.8.5"
+
+[components]
+forge = "0.8.5"
+anvil = "0.8.5"
+codex = "0.8.5"
+crucible = "0.8.5"
+scripts = "0.8.5"
+
+[scripts]
+# Allowlist copied into Suite share/chaosnexus/scripts (relative to chaosnexus-scripts/).
+include = [
+  "plugins/translation_test",
+  "plugins/terminal",
+  "plugins/time",
+  "plugins/http_get_demo",
+  "plugins/mcp_bridge_demo",
+  "plugins/noaa_ghcn_demo",
+  "lib",
+  "LICENSE",
+  "README.md",
+]

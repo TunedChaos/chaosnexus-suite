@@ -1,0 +1,41 @@
+name: Feature request
+description: Suggest an enhancement for ChaosNexus
+title: "[feat] "
+labels: []
+body:
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which piece would this primarily affect?
+      multiple: false
+      options:
+        - suite (installers / packaging)
+        - forge
+        - anvil
+        - codex
+        - crucible
+        - scripts
+        - tuned
+        - website
+        - unsure / multiple
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false

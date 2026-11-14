@@ -1,0 +1,67 @@
+name: Bug report
+description: Something broken in ChaosNexus (any component)
+title: "[bug] "
+labels: []
+body:
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which piece is primarily affected?
+      multiple: false
+      options:
+        - suite (installers / packaging)
+        - forge
+        - anvil
+        - codex
+        - crucible
+        - scripts
+        - tuned
+        - website
+        - unsure / multiple
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Clear description of the bug.
+      placeholder: Expected X, got Y…
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version / tag
+      description: e.g. suite-v0.8.5, commit SHA, or “main”
+      placeholder: suite-v0.8.5
+    validations:
+      required: false
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS
+      options:
+        - Linux
+        - Windows
+        - macOS
+        - Other / N/A
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / screenshots
+      description: Paste relevant logs (redact secrets).
+    validations:
+      required: false
